@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="9tyyC4zVqssJaDufaeVp">
-        <mxGraphModel dx="637" dy="713" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" background="light-dark(#ffffff, #ffffff)" math="0" shadow="0">
+        <mxGraphModel dx="892" dy="998" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" background="light-dark(#ffffff, #ffffff)" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -477,9 +477,14 @@
                         <mxPoint y="-10" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="2" value="2-bit&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="2payLrbqzaVfB46qjIym-19">
+                <mxCell id="2" value="2-bit&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="2payLrbqzaVfB46qjIym-19" vertex="1" connectable="0">
                     <mxGeometry x="0.0081" y="-2" relative="1" as="geometry">
                         <mxPoint y="-1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="1-bit" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=0;" vertex="1" connectable="0" parent="2payLrbqzaVfB46qjIym-19">
+                    <mxGeometry x="0.8702" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="2payLrbqzaVfB46qjIym-21" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=light-dark(#000000, #3d26e8);strokeWidth=3;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;startSize=6;endSize=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="2payLrbqzaVfB46qjIym-9" edge="1">
@@ -489,6 +494,11 @@
                         </Array>
                         <mxPoint x="1440" y="660" as="sourcePoint"/>
                         <mxPoint x="1460" y="692" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" value="1-bit" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="2payLrbqzaVfB46qjIym-21">
+                    <mxGeometry x="0.1293" y="-2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
             </root>
