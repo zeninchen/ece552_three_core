@@ -7,7 +7,7 @@ module control(
     output wire o_arith,
     output wire o_mem_wen,
     output wire o_men_to_reg,
-    output wire o_alu_src_immediate,
+    output wire o_alu_src_2,
     output wire [5:0] o_format
     // [0] R-type
     // [1] I-type
@@ -36,6 +36,44 @@ module control(
             default: o_format = 6'b000000; // default case
         endcase
     end
+    //alu sr1 logci 
+    
+    //alu src2 logic
+    //R-type and B-type instructions use register source 2, while I-type, S-type, U-type, and J-type instructions use the immediate value as source 2
+    assign o_alu_src_2 = o_format[0] || o_format[3];
 
+    //reg write enable logic
+    //only B and S type instructions do not write to a register, all other instruction types write to a register
+    assign o_rd_wen = !(o_format[2] || o_format[3]);
 
+    //mem write enable logic
+    //only S-type instructions write to memory, all other instruction types do not write to memory
+    assign o_mem_wen = o_format[2];
+
+    //mem to reg logic
+    //only load instructions (I-type with opcode 000 0011) write the memory data to a register, all other instruction types do not write memory data to a register
+    assign o_men_to_reg = (i_inst[6:0] == 7'b0000011);
+
+    //alu opsel logic
+    //for R-type and I-type instructions, the opsel is determined by the funct3 field (bits 14:12)
+    //for B-type instructions, the opsel is substraction, and the specific comparison will be based on the o_eq and o_slt from the ALU
+    //for other instruction types, it's addition
+    //o_sub and o_arithmetic are determined by funct7, which is bit[30] for both
+    always @(*) begin
+        if (o_format[0] || o_format[1]) begin // R-type or I-type
+            o_opsel = i_inst[14:12];
+            o_sub = i_inst[30];
+            o_arith = i_inst[30];
+        end
+        else if (o_format[3]) begin // B-type
+            o_opsel = 3'b000;
+            o_sub = 1'b1; // subtraction for branch comparison
+            o_arith = 1'b0; // not arithmetic shift for branch comparison
+        end
+        else begin // other instruction types
+            o_opsel = 3'b000; // ADD for all other instruction types
+            o_sub = 1'b0; // not subtraction for other instruction types
+            o_arith = 1'b0; // not arithmetic shift for other instruction types
+        end
+    end
 endmodule
