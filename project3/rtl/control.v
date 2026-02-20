@@ -17,6 +17,12 @@ module control(
     // [5] J-type
     output wire u_format_load0,
     output wire alu_src1,
+    output wire [1:0] sbhw_sel,
+    //determine whether the store instruction is a byte, halfword, or word store
+    output wire [1:0] lbhw_sel,
+    //determine whether the load instruction is a byte, halfword, or word load
+    output wire l_unsigned,
+    //determine whether the load instruction is a signed or unsigned load(we sign extend or zero extend)
 );
     //format logic 
     //R-format opcode 011 0011
@@ -37,7 +43,7 @@ module control(
         endcase
     end
     //alu sr1 logci 
-    
+
     //alu src2 logic
     //R-type and B-type instructions use register source 2, while I-type, S-type, U-type, and J-type instructions use the immediate value as source 2
     assign o_alu_src_2 = o_format[0] || o_format[3];
@@ -76,4 +82,17 @@ module control(
             o_arith = 1'b0; // not arithmetic shift for other instruction types
         end
     end
+
+    //sbhw_sel logic
+    //it's bascially funct3[1:0] for store instructions
+    assign sbhw_sel = i_inst[13:12];
+
+    //lbhw_sel logic
+    //it's bascially funct3[1:0] for load instructions
+    assign lbhw_sel = i_inst[13:12];
+
+    //l_unsigned logic
+    //it's bascially the sign bit of funct3 for load instructions
+    assign l_unsigned = i_inst[14];
+
 endmodule
