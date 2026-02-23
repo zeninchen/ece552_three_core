@@ -50,7 +50,7 @@ module control(
 
     //alu src2 logic
     //R-type and B-type instructions use register source 2, while I-type, S-type, U-type, and J-type instructions use the immediate value as source 2
-    assign o_alu_src_2 = o_format[0] || o_format[3];
+    assign o_alu_src_2 = !(o_format[0] || o_format[3]);
 
     //reg write enable logic
     //only B and S type instructions do not write to a register, all other instruction types write to a register
