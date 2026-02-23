@@ -23,6 +23,10 @@ module control(
     //determine whether the load instruction is a byte, halfword, or word load
     output wire l_unsigned,
     //determine whether the load instruction is a signed or unsigned load(we sign extend or zero extend)
+    output wire is_jump,
+    output wire is_branch,
+    output wire is_jal,
+    output wire is_jalr
 );
     //format logic 
     //R-format opcode 011 0011
@@ -95,4 +99,19 @@ module control(
     //it's bascially the sign bit of funct3 for load instructions
     assign l_unsigned = i_inst[14];
 
+    //u_format_load0 logic & alu_src1 logic
+    //for U-type instructions, we only want to load the immediate value into the register and not read from memory, so we can set u_format_load0 to 1 when it's a U-type instruction
+    assign alu_src1 = o_format[4]; // for U-type instructions
+
+    //we load 0 to sr1 when o_format is U and opcode[5] is 1
+    assign u_format_load0 = o_format[4] && i_inst[5];
+
+    //is_jal logic
+    //when it's a j-tpye instruction (the only j-type instruction is jal), we set is_jal to 1
+    assign is_jal = o_format[5];
+    //is_jalr logic
+    //when it's an I-type instruction with opcode 110 0111 (the only I-type instruction that is jalr), we set is_jalr to 1
+    assign is_jalr = i_inst[6:0] == 7'b1100111;
+
+    assign is_jump = is_jal || is_jalr;
 endmodule
