@@ -272,7 +272,7 @@ module hart #(
 
     //store selector logic
     //TODO
-    
+
     //alu operand selection
     //TODO
 
@@ -281,6 +281,7 @@ module hart #(
 
     //writeback logic
     //TODO
+    
 endmodule
 
 `default_nettype wire
