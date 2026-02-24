@@ -131,6 +131,156 @@ module hart #(
 `endif
 );
     // Fill in your implementation here.
+    // retired valid is asserted for evey cycle, for single cycle implementation
+    assign o_retire_valid = 1'b1;
+    // retired instruction is just the instruction fetched from imem
+    assign o_retire_inst = i_imem_rdata;
+    
+    //wire and reg declarations for the internal logic of the hart
+    wire [31:0] i_inst;
+    wire b_sel;
+    wire [31:0] alu_result;
+    wire rd_wen;
+    wire [2:0] o_opsel;
+    wire o_sub;
+    wire o_unsigned;
+    wire o_arith;
+    wire o_mem_wen;
+    wire o_men_to_reg;
+    wire o_alu_src_2;
+    wire [5:0] o_format;
+    // [0] R-type
+    // [1] I-type
+    // [2] S-type
+    // [3] B-type
+    // [4] U-type
+    // [5] J-type
+    wire u_format_load0;
+    wire alu_src1;
+    wire [1:0] sbhw_sel;
+    //determine whether the store instruction is a byte, halfword, or word store
+    wire [1:0] lbhw_sel;
+    //determine whether the load instruction is a byte, halfword, or word load
+    wire l_unsigned;
+    //determine whether the load instruction is a signed or unsigned load(we sign extend or zero extend)
+    wire is_jump, is_branch, is_jal, is_jalr;
+    wire b_sel;
+    wire eq, slt;
+    wire [31:0] op1, op2, alu_result;
+    //pc declaration
+    reg [31:0] pc;
+    wire [31:0] next_pc;
+    wire [31:0] pc_add_4;
+    wire [31:0] pc_add_imm;
+    wire [31:0] imm;
+
+    //rf declaration
+    //address will be from the instruction, 
+    //rs1 is bits 19:15, 
+    //rs2 is bits 24:20, 
+    //and rd is bits 11:7
+    wire [31:0] rs1_rdata;
+    wire [31:0] rs2_rdata;
+    wire [31:0] rd_wdata;
+    
+
+    //instantiate the control unit
+    control iControl (
+        .i_inst(i_inst),
+        .o_rd_wen(rd_wen),
+        .o_opsel(o_opsel),
+        .o_sub(o_sub),
+        .o_unsigned(o_unsigned),
+        .o_arith(o_arith),
+        .o_mem_wen(o_mem_wen),
+        .o_men_to_reg(o_men_to_reg),
+        .o_alu_src_2(o_alu_src_2),
+        .o_format(o_format),
+        .u_format_load0(u_format_load0),
+        .alu_src1(alu_src1),
+        .sbhw_sel(sbhw_sel),
+        .lbhw_sel(lbhw_sel),
+        .l_unsigned(l_unsigned),
+        .is_jump(is_jump),
+        .is_branch(is_branch),
+        .is_jal(is_jal),
+        .is_jalr(is_jalr)
+    );
+
+    //instantiate the branch decoder
+    branch_decoder iBD (
+        .funct3(i_inst[14:12]),
+        .is_branch(is_branch),
+        .eq(eq),
+        .slt(slt),
+        .b_sel(b_sel)
+    );
+
+    //instantiate the alu
+    alu iALU (
+        .i_op1(op1),
+        .i_op2(op2),
+        .i_alu_sel(o_opsel),
+        .i_sub(o_sub),
+        .i_unsigned(1'b0), // for now we can just set this to 0, since we only need signed comparisons for branches
+        .i_arith(o_arith),
+        .o_result(alu_result)
+    );
+
+    //instantiate the immediate generator
+    imm iImm (
+        .i_inst(i_inst),
+        .i_format(o_format),
+        .o_immediate(imm)
+    );
+
+    //instantiate the register file
+    //enable is low for single cycle processor
+    rf #(.BYPASS_EN(0)) iRF (
+        .i_clk(i_clk),
+        .i_rst(i_rst),
+        .i_rs1_raddr(i_inst[19:15]),
+        .o_rs1_rdata(rs1_rdata),
+        .i_rs2_raddr(i_inst[24:20]),
+        .o_rs2_rdata(rs2_rdata),
+        .i_rd_wen(rd_wen),
+        .i_rd_waddr(i_inst[11:7]),
+        .i_rd_wdata(rd_wdata)
+    );
+
+    //pc logic 
+    assign pc_add_4 = pc + 4;
+    assign pc_add_imm = pc + imm; // the target address calculated by the branch/jump logic
+    assign next_pc = is_jalr ? alu_result : (b_sel||is_jal ? pc_add_imm : pc_add_4); 
+    always @(posedge i_clk) begin
+        if (i_rst) begin
+            pc <= RESET_ADDR;
+        end else begin
+            pc <= next_pc;
+        end
+    end
+
+    //assign the retired pc to the current pc
+    assign o_retire_pc = pc;
+    assign o_retire_next_pc = next_pc;
+
+    //instruction fetch
+    assign i_inst = i_imem_rdata; // instruction fetched from imem
+
+    //load selector logic
+    //TODO
+
+    //store selector logic
+    //TODO
+    
+    //alu operand selection
+    //TODO
+
+    //memory access logic
+    //TODO
+
+    //writeback logic
+    //TODO
 endmodule
 
 `default_nettype wire
