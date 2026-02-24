@@ -265,8 +265,9 @@ module hart #(
     assign o_retire_next_pc = next_pc;
 
     //instruction fetch
-    assign i_inst = i_imem_rdata; // instruction fetched from imem
     assign o_imem_raddr = pc; // the address to fetch the instruction from, which is the current pc
+    assign i_inst = i_imem_rdata; // instruction fetched from imem
+    
     //alu operand selection
     //TODO
 
