@@ -266,22 +266,22 @@ module hart #(
 
     //instruction fetch
     assign i_inst = i_imem_rdata; // instruction fetched from imem
-
-    //load selector logic
+    assign o_imem_raddr = pc; // the address to fetch the instruction from, which is the current pc
+    //alu operand selection
     //TODO
 
     //store selector logic
     //TODO
 
-    //alu operand selection
+    //memory access logic
     //TODO
 
-    //memory access logic
+    //load selector logic
     //TODO
 
     //writeback logic
     //TODO
-    
+
 endmodule
 
 `default_nettype wire
