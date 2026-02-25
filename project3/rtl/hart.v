@@ -284,9 +284,9 @@ module hart #(
     assign op2 = alu_src2 ? rs2_rdata : imm;
 
     //store selector logic
-    assign o_dmem_wdata =  (sbhw_sel[1]) ? rs2_rdata :
-                    (sbhw_sel[0]) ? rs2_rdata[15:0] :
-                    rs2_rdata[7:0];
+    // assign o_dmem_wdata =  (sbhw_sel[1]) ? rs2_rdata :
+    //                 (sbhw_sel[0]) ? rs2_rdata[15:0] :
+    //                 rs2_rdata[7:0];
 
 
 
@@ -332,10 +332,6 @@ module hart #(
 
 
     //writeback logic
-    
-
-    //TODO
-
     assign rd_wdata = o_men_to_reg ? men_data :
                       (is_jump) ? pc_add_4 : // for jal and jalr, we write the return address (pc + 4) to rd
                       alu_result; // for other instructions, we write the result of the ALU calculation to rd

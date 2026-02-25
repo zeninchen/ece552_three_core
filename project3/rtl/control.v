@@ -99,21 +99,30 @@ module control(
     always @(*) begin
         case (o_format)
             // register arithmetic (R)
-            (o_format[0]): begin
+            6'b000001: begin
                 o_opsel = i_inst[14:12];
                 o_sub = i_inst[30];
                 o_arith = i_inst[30];
                 o_unsigned = i_inst[12];
             end
             // immediate arithmetic (I)
-            (o_format[1] & i_inst[4]): begin
-                o_opsel = i_inst[14:12];
-                o_sub = 1'b0;
-                o_arith = i_inst[30];
-                o_unsigned = i_inst[12];
+            6'b000010: begin
+                if(i_inst[4])begin
+                    o_opsel = i_inst[14:12];
+                    o_sub = 1'b0;
+                    o_arith = i_inst[30];
+                    o_unsigned = i_inst[12];
+                end
+                //load
+                else begin
+                    o_opsel = 3'b000;
+                    o_sub = 1'b0;
+                    o_arith = 1'b0;
+                    o_unsigned = 1'b0;
+                end
             end
             // conditonal branch (B)
-            (o_format[3]): begin
+            6'b001000: begin
                 o_opsel = (!i_inst[14] & !i_inst[13]) ? 3'b000 : 3'b011;
                 o_sub = 1'b1; // for the first two that subtract
                 o_arith = 1'bx;
