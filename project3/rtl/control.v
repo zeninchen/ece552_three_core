@@ -8,15 +8,15 @@ module control(
     output wire o_mem_wen,
     output wire o_men_to_reg,
     output wire o_alu_src_2,
-    output wire [5:0] o_format
+    output wire [5:0] o_format // one-hot format code
     // [0] R-type
     // [1] I-type
     // [2] S-type
     // [3] B-type
     // [4] U-type
     // [5] J-type
-    output wire u_format_load0,
-    output wire alu_src1,
+    output wire o_is_lui,
+    output wire o_alu_src1,
     output wire [1:0] sbhw_sel,
     //determine whether the store instruction is a byte, halfword, or word store
     output wire [1:0] lbhw_sel,
@@ -30,88 +30,107 @@ module control(
 );
     //format logic 
     //R-format opcode 011 0011
-    //I-format opcode 001 0011 or Load: 000 0011 jalr: 110 0111
+    //I-format opcode 001 0011 or Load: 000 0011 or jalr: 110 0111
     //S-format opcode 010 0011
     //B-format opcode 110 0011
     //U-format opcode 011 0111 or 001 0111
     //J-format opcode 110 1111
-    always @(*) begin
-        case (i_inst[6:0])
-            7'b0110011: o_format = 6'b000001; // R-type
-            7'b0010011, 7'b0000011, 7'b1100111: o_format = 6'b000010; // I-type
-            7'b0100011: o_format = 6'b000100; // S-type
-            7'b1100011: o_format = 6'b001000; // B-type
-            7'b0110111, 7'b0010111: o_format = 6'b010000; // U-type
-            7'b1101111: o_format = 6'b100000; // J-type
-            default: o_format = 6'b000000; // default case
-        endcase
-    end
-    //alu sr1 logci 
-
-    //alu src2 logic
-    //R-type and B-type instructions use register source 2, while I-type, S-type, U-type, and J-type instructions use the immediate value as source 2
-    assign o_alu_src_2 = !(o_format[0] || o_format[3]);
+    case (i_inst[6:0])
+        7'b0110011: o_format = 6'b000001; // R-type
+        7'b0010011, 7'b0000011, 7'b1100111: o_format = 6'b000010; // I-type
+        7'b0100011: o_format = 6'b000100; // S-type
+        7'b1100011: o_format = 6'b001000; // B-type
+        7'b0110111, 7'b0010111: o_format = 6'b010000; // U-type
+        7'b1101111: o_format = 6'b100000; // J-type
+        default: o_format = 6'b000000; // default case that should never happen
+    endcase
+    
 
     //reg write enable logic
-    //only B and S type instructions do not write to a register, all other instruction types write to a register
+    //all instructions write to a register, except for B and S instructions
     assign o_rd_wen = !(o_format[2] || o_format[3]);
 
     //mem write enable logic
-    //only S-type instructions write to memory, all other instruction types do not write to memory
+    //only S instructions write to memory
     assign o_mem_wen = o_format[2];
 
     //mem to reg logic
-    //only load instructions (I-type with opcode 000 0011) write the memory data to a register, all other instruction types do not write memory data to a register
+    //only load instructions (opcode 000 0011) write the memory data to a register
     assign o_men_to_reg = (i_inst[6:0] == 7'b0000011);
 
-    //alu opsel logic
-    //for R-type and I-type instructions, the opsel is determined by the funct3 field (bits 14:12)
-    //for B-type instructions, the opsel is substraction, and the specific comparison will be based on the o_eq and o_slt from the ALU
-    //for other instruction types, it's addition
-    //o_sub and o_arithmetic are determined by funct7, which is bit[30] for both
-    always @(*) begin
-        if (o_format[0] || o_format[1]) begin // R-type or I-type
-            o_opsel = i_inst[14:12];
-            o_sub = i_inst[30];
-            o_arith = i_inst[30];
-        end
-        else if (o_format[3]) begin // B-type
-            o_opsel = 3'b000;
-            o_sub = 1'b1; // subtraction for branch comparison
-            o_arith = 1'b0; // not arithmetic shift for branch comparison
-        end
-        else begin // other instruction types
-            o_opsel = 3'b000; // ADD for all other instruction types
-            o_sub = 1'b0; // not subtraction for other instruction types
-            o_arith = 1'b0; // not arithmetic shift for other instruction types
-        end
-    end
-
-    //sbhw_sel logic
-    //it's bascially funct3[1:0] for store instructions
+    // selects to store a byte, half a word, or a word
     assign sbhw_sel = i_inst[13:12];
 
-    //lbhw_sel logic
-    //it's bascially funct3[1:0] for load instructions
+    // selects to load a byte, half a word, or a word (needs help with masking)
     assign lbhw_sel = i_inst[13:12];
 
-    //l_unsigned logic
-    //it's bascially the sign bit of funct3 for load instructions
+    // selects whether to load unsigned
     assign l_unsigned = i_inst[14];
 
-    //u_format_load0 logic & alu_src1 logic
-    //for U-type instructions, we only want to load the immediate value into the register and not read from memory, so we can set u_format_load0 to 1 when it's a U-type instruction
-    assign alu_src1 = o_format[4]; // for U-type instructions
-
     //we load 0 to sr1 when o_format is U and opcode[5] is 1
-    assign u_format_load0 = o_format[4] && i_inst[5];
+    assign o_is_lui = o_format[4] && i_inst[5];
 
-    //is_jal logic
+    //is_jal logic: jal increments pc by an offset
     //when it's a j-tpye instruction (the only j-type instruction is jal), we set is_jal to 1
     assign is_jal = o_format[5];
-    //is_jalr logic
-    //when it's an I-type instruction with opcode 110 0111 (the only I-type instruction that is jalr), we set is_jalr to 1
+
+    //is_jalr logic: jalr sets pc to be an ALU result
     assign is_jalr = i_inst[6:0] == 7'b1100111;
 
     assign is_jump = is_jal || is_jalr;
+
+    // ALU controls: can check the RV32I Reference Card to verify the logic
+    // 
+    // we need to drive the following ALU inputs:
+    // 1. the control inputs i_opsel, i_sub, i_unsigned, i_arith with the 
+    // controls bearing the same names (ex. o_opsel for i_opsel)
+    //
+    // 2. the operand inputs i_op1 and i_op2 indirectly with MUX controls
+    // o_alu_src1, o_alu_src2 and o_is_lui
+    //
+    // important fields: i_inst[14:12] = funct3, i_inst[30] = 2nd MSB of funct7
+    
+    /// 1. control inputs to ALU ///
+    case (o_format)
+        // register arithmetic (R)
+        (o_format[0]): begin
+            o_opsel = i_inst[14:12];
+            o_sub = i_inst[30];
+            o_arith = i_inst[30];
+            o_unsigned = i_inst[12];
+        end
+        // immediate arithmetic (I)
+        (o_format[1] & i_inst[4]): begin
+            o_opsel = i_inst[14:12];
+            o_sub = 1'b0;
+            o_arith = i_inst[30];
+            o_unsigned = i_inst[12];
+        end
+        // conditonal branch (B)
+        (o_format[3]): begin
+            o_opsel = (!i_inst[14] & !i_inst[13]) ? 3'b000 : 3'b011;
+            o_sub = 1'b1; // for the first two that subtract
+            o_arith = 1'bx;
+            o_unsigned = i_inst[13];
+        end
+        // all other instructions add (U-type immediate arithmetic, load (I), etc.)
+        default: begin
+            o_opsel = 3'b000;
+            o_sub = 1'b0;
+            o_arith = 1'bx;
+            o_unsigned = 1'bx;
+        end
+    endcase
+
+    /// 2. controls that help drive op1 and op2 to ALU //
+    // 1 = using either PC (auipc) or 0 (lui) as src1 of the ALU
+    // 0 = using rs1 as src1
+    // all insturctions use/tolerate rs1 as src1, except for Us
+    assign o_alu_src1 = o_format[4];
+
+    // 1 = using rs2 as src2
+    // 0 = using imm as src2
+    // all instructions use/tolerate imm as src2, except for Rs and Bs
+    assign o_alu_src_2 = (o_format[0] || o_format[3]);
+
 endmodule

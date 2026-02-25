@@ -1,3 +1,4 @@
+// this is the top module without the memories (currently dummies)
 module hart #(
     // After reset, the program counter (PC) should be initialized to this
     // address and start executing instructions from there.
@@ -7,6 +8,7 @@ module hart #(
     input  wire        i_clk,
     // Synchronous active-high reset.
     input  wire        i_rst,
+
     // Instruction fetch goes through a read only instruction memory (imem)
     // port. The port accepts a 32-bit address (e.g. from the program counter)
     // per cycle and combinationally returns a 32-bit instruction word. This
@@ -19,6 +21,8 @@ module hart #(
     output wire [31:0] o_imem_raddr,
     // Instruction word fetched from memory, available on the same cycle.
     input  wire [31:0] i_imem_rdata,
+    
+
     // Data memory accesses go through a separate read/write data memory (dmem)
     // that is shared between read (load) and write (stored). The port accepts
     // a 32-bit address, read or write enable, and mask (explained below) each
@@ -31,7 +35,7 @@ module hart #(
     // half-word and byte accesses at unaligned addresses.
     output wire [31:0] o_dmem_addr,
     // When asserted, the memory will perform a read at the aligned address
-    // specified by `i_addr` and return the 32-bit word at that address
+    // specified by `o_dmem_addr` and return the 32-bit word at that address
     // immediately (i.e. combinationally). It is illegal to assert this and
     // `o_dmem_wen` on the same cycle.
     output wire        o_dmem_ren,
@@ -48,9 +52,9 @@ module hart #(
     output wire [31:0] o_dmem_wdata,
     // The dmem interface expects word (32 bit) aligned addresses. However,
     // WISC-25 supports byte and half-word loads and stores at unaligned and
-    // 16-bit aligned addresses, respectively. To support this, the access
-    // mask specifies which bytes within the 32-bit word are actually read
-    // from or written to memory.
+    // 16-bit (half-byte) aligned addresses, respectively. To support this, 
+    // the access mask specifies which bytes within the 32-bit word are actually 
+    // read from or written to memory.
     //
     // To perform a half-word read at address 0x00001002, align `o_dmem_addr`
     // to 0x00001000, assert `o_dmem_ren`, and set the mask to 0b1100 to
@@ -64,14 +68,16 @@ module hart #(
     // indicate that only the upper byte should be written. On the next clock
     // cycle, the upper byte of `o_dmem_wdata` will be written to memory, with
     // the other three bytes of the aligned word unaffected. Remember to shift
-    // the value of the `sb` instruction left by 24 bits to place it in the
-    // appropriate byte lane.
+    // the value of the `sb` instruction (that is, r[rs2]) left by 24 bits to 
+    // place it in the appropriate byte lane.
     output wire [ 3:0] o_dmem_mask,
     // The 32-bit word read from data memory. When `o_dmem_ren` is asserted,
     // this will immediately reflect the contents of memory at the specified
     // address, for the bytes enabled by the mask. When read enable is not
     // asserted, or for bytes not set in the mask, the value is undefined.
     input  wire [31:0] i_dmem_rdata,
+
+
 	// The output `retire` interface is used to signal to the testbench that
     // the CPU has completed and retired an instruction. A single cycle
     // implementation will assert this every cycle; however, a pipelined
@@ -130,13 +136,14 @@ module hart #(
     ,`RVFI_OUTPUTS,
 `endif
 );
-    // Fill in your implementation here.
+    /// Fill in your implementation here. ///
+    
     // retired valid is asserted for evey cycle, for single cycle implementation
     assign o_retire_valid = 1'b1;
     // retired instruction is just the instruction fetched from imem
     assign o_retire_inst = i_imem_rdata;
     
-    //wire and reg declarations for the internal logic of the hart
+    // wire and reg declarations for the internal logic of the hart
     wire [31:0] i_inst;
     wire b_sel;
     wire [31:0] alu_result;
@@ -182,6 +189,9 @@ module hart #(
     wire [31:0] rs1_rdata;
     wire [31:0] rs2_rdata;
     wire [31:0] rd_wdata;
+
+    // dmem data out of load selector, ready to be loaded
+    wire [31:0] to_load;
     
 
     //instantiate the control unit
@@ -272,12 +282,22 @@ module hart #(
     //TODO
 
     //store selector logic
-    //TODO
-
-    //memory access logic
-    //TODO
+    o_dmem_wdata =  (sbhw_sel[1]) ? rs2_rdata :
+                    (sbhw_sel[0]) ? rs2_rdata[15:0] :
+                    rs2_rdata[7:0];
 
     //load selector logic
+    case (lbhw_sel)
+        (lbhw_sel[1]): to_load = i_dmem_rdata;
+        (lbhw_sel[0]): to_load = (l_unsigned) ? {{16{1'b0}}, i_dmem_rdata[15:0]} :
+                                {{16{i_dmem_rdata[15]}}, i_dmem_rdata[15:0]};
+        // loading a byte
+        default: to_load = (l_unsigned) ? {{24{1'b0}}, i_dmem_rdata[7:0]} :
+                                {{24{i_dmem_rdata[15]}}, i_dmem_rdata[7:0]};
+    endcase
+
+    
+    //memory access logic
     //TODO
 
     //writeback logic

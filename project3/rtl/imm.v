@@ -41,7 +41,7 @@ module imm (
                         i_inst[20],        // imm[11]
                         i_inst[30:21],     // imm[10:1]
                         1'b0};             // imm[0]
-    //[0] R-type
+    // [0] R-type
     // [1] I-type
     // [2] S-type
     // [3] B-type
