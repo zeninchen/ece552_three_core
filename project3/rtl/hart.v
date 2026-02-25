@@ -140,8 +140,7 @@ module hart #(
     
     // retired valid is asserted for evey cycle, for single cycle implementation
     assign o_retire_valid = 1'b1;
-    // retired instruction is just the instruction fetched from imem
-    assign o_retire_inst = i_imem_rdata;
+
     
     // wire and reg declarations for the internal logic of the hart
     wire [31:0] i_inst;
