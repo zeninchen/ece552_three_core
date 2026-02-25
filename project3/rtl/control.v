@@ -8,6 +8,7 @@ module control(
     output wire o_mem_wen,
     output wire o_men_to_reg,
     output wire o_alu_src_2,
+    output wire o_alu_src1,
     output wire [5:0] o_format // one-hot format code
     // [0] R-type
     // [1] I-type
@@ -16,7 +17,7 @@ module control(
     // [4] U-type
     // [5] J-type
     output wire o_is_lui,
-    output wire o_alu_src1,
+
     output wire [1:0] sbhw_sel,
     //determine whether the store instruction is a byte, halfword, or word store
     output wire [1:0] lbhw_sel,
@@ -92,36 +93,39 @@ module control(
     // important fields: i_inst[14:12] = funct3, i_inst[30] = 2nd MSB of funct7
     
     /// 1. control inputs to ALU ///
-    case (o_format)
-        // register arithmetic (R)
-        (o_format[0]): begin
-            o_opsel = i_inst[14:12];
-            o_sub = i_inst[30];
-            o_arith = i_inst[30];
-            o_unsigned = i_inst[12];
-        end
-        // immediate arithmetic (I)
-        (o_format[1] & i_inst[4]): begin
-            o_opsel = i_inst[14:12];
-            o_sub = 1'b0;
-            o_arith = i_inst[30];
-            o_unsigned = i_inst[12];
-        end
-        // conditonal branch (B)
-        (o_format[3]): begin
-            o_opsel = (!i_inst[14] & !i_inst[13]) ? 3'b000 : 3'b011;
-            o_sub = 1'b1; // for the first two that subtract
-            o_arith = 1'bx;
-            o_unsigned = i_inst[13];
-        end
-        // all other instructions add (U-type immediate arithmetic, load (I), etc.)
-        default: begin
-            o_opsel = 3'b000;
-            o_sub = 1'b0;
-            o_arith = 1'bx;
-            o_unsigned = 1'bx;
-        end
-    endcase
+    always @(*) begin
+        case (o_format)
+            // register arithmetic (R)
+            (o_format[0]): begin
+                o_opsel = i_inst[14:12];
+                o_sub = i_inst[30];
+                o_arith = i_inst[30];
+                o_unsigned = i_inst[12];
+            end
+            // immediate arithmetic (I)
+            (o_format[1] & i_inst[4]): begin
+                o_opsel = i_inst[14:12];
+                o_sub = 1'b0;
+                o_arith = i_inst[30];
+                o_unsigned = i_inst[12];
+            end
+            // conditonal branch (B)
+            (o_format[3]): begin
+                o_opsel = (!i_inst[14] & !i_inst[13]) ? 3'b000 : 3'b011;
+                o_sub = 1'b1; // for the first two that subtract
+                o_arith = 1'bx;
+                o_unsigned = i_inst[13];
+            end
+            // all other instructions add (U-type immediate arithmetic, load (I), etc.)
+            default: begin
+                o_opsel = 3'b000;
+                o_sub = 1'b0;
+                o_arith = 1'bx;
+                o_unsigned = 1'bx;
+            end
+        endcase
+    end
+
 
     /// 2. controls that help drive op1 and op2 to ALU //
     // 1 = using either PC (auipc) or 0 (lui) as src1 of the ALU
