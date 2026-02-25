@@ -166,7 +166,8 @@ module hart #(
     wire eq, slt;
     wire [31:0] op1, op2, alu_result;
     //pc declaration
-    reg [31:0] pc, next_pc, pc_add_4, pc_add_imm, imm;
+    reg [31:0] pc, 
+    wire [31:0] next_pc, pc_add_4, pc_add_imm, imm;
 
     //rf declaration
     //address will be from the instruction, 

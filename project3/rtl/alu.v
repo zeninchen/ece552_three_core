@@ -57,13 +57,13 @@ module alu (
     assign add_sub_result = i_sub ? (i_op1 - i_op2) : (i_op1 + i_op2);
 
     // shift left logical (barrel shifter; variable shift operators disallowed)
-    wire [4:0] shamt = i_op2[4:0];
+    wire [4:0] shamt_left = i_op2[4:0];
 
-    wire [31:0] sll_1  = shamt[0] ? {i_op1[30:0], 1'b0}   : i_op1;
-    wire [31:0] sll_2  = shamt[1] ? {sll_1[29:0], 2'b0}   : sll_1;
-    wire [31:0] sll_4  = shamt[2] ? {sll_2[27:0], 4'b0}   : sll_2;
-    wire [31:0] sll_8  = shamt[3] ? {sll_4[23:0], 8'b0}   : sll_4;
-    wire [31:0] sll_16 = shamt[4] ? {sll_8[15:0], 16'b0}  : sll_8;
+    wire [31:0] sll_1  = shamt_left[0] ? {i_op1[30:0], 1'b0}   : i_op1;
+    wire [31:0] sll_2  = shamt_left[1] ? {sll_1[29:0], 2'b0}   : sll_1;
+    wire [31:0] sll_4  = shamt_left[2] ? {sll_2[27:0], 4'b0}   : sll_2;
+    wire [31:0] sll_8  = shamt_left[3] ? {sll_4[23:0], 8'b0}   : sll_4;
+    wire [31:0] sll_16 = shamt_left[4] ? {sll_8[15:0], 16'b0}  : sll_8;
 
     assign shift_left_result = sll_16;
 
@@ -122,8 +122,18 @@ module alu (
     assign o_eq = (i_op1 == i_op2);
 
     //set less than result
-    assign o_slt = i_unsigned ? (i_op1 < i_op2) :
-                             ($signed(i_op1) < $signed(i_op2));
+    // set less than result (no $signed)
+    wire a_neg = i_op1[31];
+    wire b_neg = i_op2[31];
+
+    wire signed_lt =
+        (a_neg != b_neg) ? a_neg : (i_op1 < i_op2);   // same sign -> compare magnitude as unsigned
+
+    assign o_slt = i_unsigned ? (i_op1 < i_op2) : signed_lt;
+
+
+    // assign o_slt = i_unsigned ? (i_op1 < i_op2) :
+    //                          ($signed(i_op1) < $signed(i_op2));
 endmodule
 
 `default_nettype wire
