@@ -75,8 +75,7 @@ module hart #(
     // this will immediately reflect the contents of memory at the specified
     // address, for the bytes enabled by the mask. When read enable is not
     // asserted, or for bytes not set in the mask, the value is undefined.
-    input  wire [31:0] 
-    i_dmem_rdata,
+    input  wire [31:0]     i_dmem_rdata,
 
 
 	// The output `retire` interface is used to signal to the testbench that
@@ -196,7 +195,9 @@ module hart #(
     
 
     wire [31:0] masked_men_data;
-
+    wire [31:0] mask_32;
+    wire [31:0] men_data;
+    wire [4:0] mask_shift;
     //instantiate the control unit
     control iControl (
         .i_inst(i_inst),
@@ -292,38 +293,57 @@ module hart #(
                     (sbhw_sel[0]) ? rs2_rdata[15:0] :
                     rs2_rdata[7:0];
 
-    //load selector logic
-    case (lbhw_sel)
-        (lbhw_sel[1]): to_load = i_dmem_rdata;
-        (lbhw_sel[0]): to_load = (l_unsigned) ? {{16{1'b0}}, i_dmem_rdata[15:0]} :
-                                {{16{i_dmem_rdata[15]}}, i_dmem_rdata[15:0]};
-        // loading a byte
-        default: to_load = (l_unsigned) ? {{24{1'b0}}, i_dmem_rdata[7:0]} :
-                                {{24{i_dmem_rdata[15]}}, i_dmem_rdata[7:0]};
-    endcase
+
 
     
     //memory access logic
     //TODO
     //the address of the memory access is the result of the ALU calculation
-    assign o_dmem_addr = alu_result;
-    //connect the wires
-    assign o_dmem_ren = is_load;
-    //we default the read to 1 for simplicity, since we can just ignore the rdata when it's not a load instruction
-    assign o_dmem_wen = o_mem_wen;
+    // assign o_dmem_addr = alu_result;
+    // //connect the wires
+    // //only read when it's a load
+    // assign o_dmem_ren = is_load;
+    
+    // assign o_dmem_wen = o_mem_wen;
 
-    case(o_dmem_mask)
-    //depends on if it's signed of unsigned, we sign extend or zero extend the data read from memory for loads, and we shift the data to the correct byte lanes for stores
-        4'b0001: masked_men_data = {24{1'b0}, i_dmem_rdata[7:0]};
-        4'b0010: masked_men_data = {16{1'b0}, i_dmem_rdata[15:0]};
-        4'b0100: masked_men_data = {8{1'b0}, i_dmem_rdata[23:0]};
-        4'b1000: masked_men_data = i_dmem_rdata;
-        default: masked_men_data = i_dmem_rdata;
-    endcase
+    // //the 3 is the most significant bit
+    // wire [7:0] mask_0, mask_1, mask_2, mask_3;
+    // //assign the mask if the the o_dmen_mask is 1 at the location
+    // assign mask_0 = o_dmem_mask[0] ? 8'hff : 8'b0;
+    // assign mask_1 = o_dmem_mask[1] ? 8'hff : 8'b0;
+    // assign mask_2 = o_dmem_mask[2] ? 8'hff : 8'b0;
+    // assign mask_3 = o_dmem_mask[3] ? 8'hff : 8'b0;
+    // //mask the output
+    // assign masked_men_data = (mask_0 & i_dmem_rdata[7:0]) |
+    //                         (mask_1 & i_dmem_rdata[15:8]) |
+    //                         (mask_2 & i_dmem_rdata[23:16]) |
+    //                         (mask_3 & i_dmem_rdata[31:24]);
+    // always @(*) begin
+    //     if(o_dmem_mask)
+    //     case(lbhw_sel)
+    //         //depends on if it's signed of unsigned, we sign extend or zero extend the data read from memory for loads, and we shift the data to the correct byte lanes for stores
+    //         // load byte
+    //         2'b00: men_data = l_unsigned ? {24'b0, masked_men_data[7:0]} : {{24{masked_men_data[7]}}, masked_men_data[7:0]};
+    //         // load halfword
+    //         2'b01: men_data = l_unsigned ? {16'b0, masked_men_data[15:0]} : {{16{masked_men_data[15]}}, masked_men_data[15:0]};
+    //         //load word
+    //         2'b10: men_data =  masked_men_data;
+    //         default: men_data = 32'h0000_0000; // default case that should never happen
+    //     endcase
+    // end
+    
+
+
 
     //writeback logic
     
+    //it will do nothing when write to 0
+    assign rd_wen = o_wen; 
     //TODO
+
+    assign rd_wdata = o_men_to_reg ? men_data :
+                      (is_jump) ? pc_add_4 : // for jal and jalr, we write the return address (pc + 4) to rd
+                      alu_result; // for other instructions, we write the result of the ALU calculation to rd
     
 
 endmodule
