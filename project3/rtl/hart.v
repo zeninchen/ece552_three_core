@@ -154,7 +154,8 @@ module hart #(
     wire o_arith;
     wire o_mem_wen;
     wire o_men_to_reg;
-    wire o_alu_src_2;
+    wire alu_src1;
+    wire alu_src2;
     wire [5:0] o_format;
     // [0] R-type
     // [1] I-type
@@ -163,7 +164,7 @@ module hart #(
     // [4] U-type
     // [5] J-type
     wire u_format_load0;
-    wire alu_src1;
+    
     wire [1:0] sbhw_sel;
     //determine whether the store instruction is a byte, halfword, or word store
     wire [1:0] lbhw_sel;
@@ -286,7 +287,7 @@ module hart #(
     //alu operand selection
     //TODO
     assign op1 = alu_src1 ? (u_format_load0 ? pc : 0) : rs1_rdata;
-    assign op2 = o_alu_src_2 ? rs2_rdata : imm;
+    assign op2 = alu_src2 ? rs2_rdata : imm;
 
     //store selector logic
     o_dmem_wdata =  (sbhw_sel[1]) ? rs2_rdata :
