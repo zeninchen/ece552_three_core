@@ -75,7 +75,8 @@ module hart #(
     // this will immediately reflect the contents of memory at the specified
     // address, for the bytes enabled by the mask. When read enable is not
     // asserted, or for bytes not set in the mask, the value is undefined.
-    input  wire [31:0] i_dmem_rdata,
+    input  wire [31:0] 
+    i_dmem_rdata,
 
 
 	// The output `retire` interface is used to signal to the testbench that
@@ -194,6 +195,8 @@ module hart #(
     wire [31:0] to_load;
     
 
+    wire [31:0] masked_men_data;
+
     //instantiate the control unit
     control iControl (
         .i_inst(i_inst),
@@ -214,7 +217,8 @@ module hart #(
         .is_jump(is_jump),
         .is_branch(is_branch),
         .is_jal(is_jal),
-        .is_jalr(is_jalr)
+        .is_jalr(is_jalr),
+        .is_load(is_load)
     );
 
     //instantiate the branch decoder
@@ -280,6 +284,8 @@ module hart #(
     
     //alu operand selection
     //TODO
+    assign op1 = alu_src1 ? (u_format_load0 ? pc : 0) : rs1_rdata;
+    assign op2 = o_alu_src_2 ? rs2_rdata : imm;
 
     //store selector logic
     o_dmem_wdata =  (sbhw_sel[1]) ? rs2_rdata :
@@ -299,9 +305,26 @@ module hart #(
     
     //memory access logic
     //TODO
+    //the address of the memory access is the result of the ALU calculation
+    assign o_dmem_addr = alu_result;
+    //connect the wires
+    assign o_dmem_ren = is_load;
+    //we default the read to 1 for simplicity, since we can just ignore the rdata when it's not a load instruction
+    assign o_dmem_wen = o_mem_wen;
+
+    case(o_dmem_mask)
+    //depends on if it's signed of unsigned, we sign extend or zero extend the data read from memory for loads, and we shift the data to the correct byte lanes for stores
+        4'b0001: masked_men_data = {24{1'b0}, i_dmem_rdata[7:0]};
+        4'b0010: masked_men_data = {16{1'b0}, i_dmem_rdata[15:0]};
+        4'b0100: masked_men_data = {8{1'b0}, i_dmem_rdata[23:0]};
+        4'b1000: masked_men_data = i_dmem_rdata;
+        default: masked_men_data = i_dmem_rdata;
+    endcase
 
     //writeback logic
+    
     //TODO
+    
 
 endmodule
 

@@ -26,7 +26,8 @@ module control(
     output wire is_jump,
     output wire is_branch,
     output wire is_jal,
-    output wire is_jalr
+    output wire is_jalr,
+    output wire is_load
 );
     //format logic 
     //R-format opcode 011 0011
