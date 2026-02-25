@@ -97,7 +97,7 @@ module alu (
 
     //set less than result
     assign o_slt = i_unsigned ? (i_op1 < i_op2) :
-                             ($signed(i_op1) < $signed(i_op2));;
+                             ($signed(i_op1) < $signed(i_op2));
 endmodule
 
 `default_nettype wire
