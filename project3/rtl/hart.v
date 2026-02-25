@@ -249,6 +249,12 @@ module hart #(
         .i_rd_waddr(i_inst[11:7]),
         .i_rd_wdata(rd_wdata)
     );
+    assign o_retire_rs1_raddr = i_inst[19:15];
+    assign o_retire_rs1_rdata = rs1_rdata;
+    assign o_retire_rs2_raddr = i_inst[24:20];
+    assign o_retire_rs2_rdata = rs2_rdata;
+    assign o_retire_rd_waddr = i_inst[11:7];
+    assign o_retire_rd_wdata = rd_wdata;
 
     //pc logic 
     always @(posedge i_clk) begin
