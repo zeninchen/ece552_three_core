@@ -8,7 +8,7 @@ module control(
     output wire o_mem_wen,
     output wire o_men_to_reg,
     output wire o_alu_src_2,
-    output wire o_alu_src1,
+    output wire o_alu_src_1,
     output reg [5:0] o_format, // one-hot format code
     // [0] R-type
     // [1] I-type
@@ -134,7 +134,7 @@ module control(
     // 1 = using either PC (auipc) or 0 (lui) as src1 of the ALU
     // 0 = using rs1 as src1
     // all insturctions use/tolerate rs1 as src1, except for Us
-    assign o_alu_src1 = o_format[4];
+    assign o_alu_src_1 = o_format[4];
 
     // 1 = using rs2 as src2
     // 0 = using imm as src2

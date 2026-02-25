@@ -145,16 +145,8 @@ module hart #(
     
     // wire and reg declarations for the internal logic of the hart
     wire [31:0] i_inst;
-    wire b_sel;
-    wire rd_wen;
     wire [2:0] o_opsel;
-    wire o_sub;
-    wire o_unsigned;
-    wire o_arith;
-    wire o_mem_wen;
-    wire o_men_to_reg;
-    wire alu_src1;
-    wire alu_src2;
+    wire b_sel, rd_wen, o_sub, o_unsigned, o_arith, o_mem_wen, o_men_to_reg, alu_src1, alu_src2;
     wire [5:0] o_format;
     // [0] R-type
     // [1] I-type
@@ -174,20 +166,14 @@ module hart #(
     wire eq, slt;
     wire [31:0] op1, op2, alu_result;
     //pc declaration
-    reg [31:0] pc;
-    wire [31:0] next_pc;
-    wire [31:0] pc_add_4;
-    wire [31:0] pc_add_imm;
-    wire [31:0] imm;
+    reg [31:0] pc, next_pc, pc_add_4, pc_add_imm, imm;
 
     //rf declaration
     //address will be from the instruction, 
     //rs1 is bits 19:15, 
     //rs2 is bits 24:20, 
     //and rd is bits 11:7
-    wire [31:0] rs1_rdata;
-    wire [31:0] rs2_rdata;
-    wire [31:0] rd_wdata;
+    wire [31:0] rs1_rdata, rs2_rdata, rd_wdata;
 
     // dmem data out of load selector, ready to be loaded
     wire [31:0] to_load;
@@ -210,7 +196,7 @@ module hart #(
         .o_alu_src_2(alu_src2),
         .o_format(o_format),
         .o_is_lui(u_format_load0),
-        .alu_src1(alu_src1),
+        .o_alu_src_1(alu_src1),
         .sbhw_sel(sbhw_sel),
         .lbhw_sel(lbhw_sel),
         .l_unsigned(l_unsigned),
@@ -234,11 +220,13 @@ module hart #(
     alu iALU (
         .i_op1(op1),
         .i_op2(op2),
-        .i_alu_sel(o_opsel),
+        .i_opsel(o_opsel),
         .i_sub(o_sub),
         .i_unsigned(1'b0), // for now we can just set this to 0, since we only need signed comparisons for branches
         .i_arith(o_arith),
-        .o_result(alu_result)
+        .o_result(alu_result),
+        .o_eq(eq),
+        .o_slt(slt)
     );
 
     //instantiate the immediate generator
@@ -263,9 +251,6 @@ module hart #(
     );
 
     //pc logic 
-    assign pc_add_4 = pc + 4;
-    assign pc_add_imm = pc + imm; // the target address calculated by the branch/jump logic
-    assign next_pc = is_jalr ? alu_result : (b_sel||is_jal ? pc_add_imm : pc_add_4); 
     always @(posedge i_clk) begin
         if (i_rst) begin
             pc <= RESET_ADDR;
@@ -273,6 +258,10 @@ module hart #(
             pc <= next_pc;
         end
     end
+    assign pc_add_4 = pc + 4;
+    assign pc_add_imm = pc + imm; // the target address calculated by the branch/jump logic
+    assign next_pc = is_jalr ? alu_result : (b_sel||is_jal ? pc_add_imm : pc_add_4); 
+    
 
     //assign the retired pc to the current pc
     assign o_retire_pc = pc;
@@ -281,6 +270,7 @@ module hart #(
     //instruction fetch
     assign o_imem_raddr = pc; // the address to fetch the instruction from, which is the current pc
     assign i_inst = i_imem_rdata; // instruction fetched from imem
+    assign o_retire_inst = i_inst; // the instruction being retired is the instruction fetched from imem
     
     //alu operand selection
     //TODO
