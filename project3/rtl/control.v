@@ -134,4 +134,6 @@ module control(
     // all instructions use/tolerate imm as src2, except for Rs and Bs
     assign o_alu_src_2 = (o_format[0] || o_format[3]);
 
+    assign is_branch = o_format[3];
+    assign is_load = i_inst[6:0] == 7'b0000011;
 endmodule
