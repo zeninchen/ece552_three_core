@@ -97,32 +97,23 @@ module control(
     
     /// 1. control inputs to ALU ///
     always @(*) begin
-        case (o_format)
+        case (i_inst[6:0])
             // register arithmetic (R)
-            6'b000001: begin
+            7'b0110011: begin
                 o_opsel = i_inst[14:12];
                 o_sub = i_inst[30];
                 o_arith = i_inst[30];
                 o_unsigned = i_inst[12];
             end
             // immediate arithmetic (I)
-            6'b000010: begin
-                if(i_inst[4])begin
+            7'b0010011: begin               
                     o_opsel = i_inst[14:12];
                     o_sub = 1'b0;
                     o_arith = i_inst[30];
                     o_unsigned = i_inst[12];
-                end
-                //load
-                else begin
-                    o_opsel = 3'b000;
-                    o_sub = 1'b0;
-                    o_arith = 1'b0;
-                    o_unsigned = 1'b0;
-                end
             end
             // conditonal branch (B)
-            6'b001000: begin
+            7'b1100011: begin
                 o_opsel = (!i_inst[14] & !i_inst[13]) ? 3'b000 : 3'b011;
                 o_sub = 1'b1; // for the first two that subtract
                 o_arith = 1'bx;

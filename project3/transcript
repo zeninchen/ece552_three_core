@@ -40133,3 +40133,17 @@ restart
 # Loading work.hart
 # ** Error (suppressible): (vsim-3053) Illegal output or inout port connection for port 'o_immediate'.
 #    Time: 0 ps  Iteration: 0  Instance: /hart_tb/dut/iImm File: C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v Line: 233
+# Compile of alu.v was successful.
+# Compile of control.v was successful.
+# Compile of hart.v was successful.
+# 3 compiles, 0 failed with no errors.
+# Break key hit
+# Break key hit
+# Break key hit
+# Break key hit
+# Break key hit
+# Break key hit
+# Break key hit
+# Break key hit
+# End time: 13:26:47 on Feb 25,2026, Elapsed time: 0:19:09
+# Errors: 1, Warnings: 2

@@ -73,10 +73,40 @@ module rf #(
     always @(posedge i_clk) begin
         //sychronous active high reset
         if (i_rst) begin
-            
-            for (i = 1; i < 32; i = i + 1) begin
-                rf[i] <= 32'b0;
-            end
+            //I though the for loop will be unrolled though
+            //hardcode all the resgister to 0 on reset, even though x0 is already hardwired to 0, for simplicity of testing
+            rf[0] <= 32'b0;
+            rf[1] <= 32'b0;
+            rf[2] <= 32'b0;
+            rf[3] <= 32'b0;
+            rf[4] <= 32'b0;
+            rf[5] <= 32'b0;
+            rf[6] <= 32'b0;
+            rf[7] <= 32'b0;
+            rf[8] <= 32'b0;
+            rf[9] <= 32'b0;
+            rf[10] <= 32'b0;    
+            rf[11] <= 32'b0;
+            rf[12] <= 32'b0;
+            rf[13] <= 32'b0;
+            rf[14] <= 32'b0;
+            rf[15] <= 32'b0;
+            rf[16] <= 32'b0;
+            rf[17] <= 32'b0;
+            rf[18] <= 32'b0;
+            rf[19] <= 32'b0;
+            rf[20] <= 32'b0;
+            rf[21] <= 32'b0;
+            rf[22] <= 32'b0;
+            rf[23] <= 32'b0;
+            rf[24] <= 32'b0;
+            rf[25] <= 32'b0;
+            rf[26] <= 32'b0;
+            rf[27] <= 32'b0;
+            rf[28] <= 32'b0;
+            rf[29] <= 32'b0;
+            rf[30] <= 32'b0;
+            rf[31] <= 32'b0;
         end
         else if (i_rd_wen && (i_rd_waddr != 5'b0)) begin
             //write data to the register file, if the write enable is high and the write address is not 0 (x0 is hardwired to 0)
