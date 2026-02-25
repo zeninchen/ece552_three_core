@@ -81,8 +81,7 @@ module alu (
     assign and_result = i_op1 & i_op2;
 
     //set less than/unsigned
-    assign slt_result = i_unsigned ? (i_op1 < i_op2) :
-                             ($signed(i_op1) < $signed(i_op2));
+    assign slt_result = {31'b0, o_slt};
 
     //result selection
     assign o_result = (i_opsel == 3'b000) ? add_sub_result :
@@ -97,7 +96,8 @@ module alu (
     assign o_eq = (i_op1 == i_op2);
 
     //set less than result
-    assign o_slt = slt_result[0];
+    assign o_slt = i_unsigned ? (i_op1 < i_op2) :
+                             ($signed(i_op1) < $signed(i_op2));;
 endmodule
 
 `default_nettype wire
