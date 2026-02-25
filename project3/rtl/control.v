@@ -1,15 +1,15 @@
 module control(
     input  wire [31:0] i_inst,
     output wire o_rd_wen,
-    output wire [2:0] o_opsel,
-    output wire o_sub,
-    output wire o_unsigned,
-    output wire o_arith,
+    output reg [2:0] o_opsel,
+    output reg o_sub,
+    output reg o_unsigned,
+    output reg o_arith,
     output wire o_mem_wen,
     output wire o_men_to_reg,
     output wire o_alu_src_2,
     output wire o_alu_src1,
-    output wire [5:0] o_format // one-hot format code
+    output reg [5:0] o_format, // one-hot format code
     // [0] R-type
     // [1] I-type
     // [2] S-type
@@ -37,15 +37,18 @@ module control(
     //B-format opcode 110 0011
     //U-format opcode 011 0111 or 001 0111
     //J-format opcode 110 1111
-    case (i_inst[6:0])
-        7'b0110011: o_format = 6'b000001; // R-type
-        7'b0010011, 7'b0000011, 7'b1100111: o_format = 6'b000010; // I-type
-        7'b0100011: o_format = 6'b000100; // S-type
-        7'b1100011: o_format = 6'b001000; // B-type
-        7'b0110111, 7'b0010111: o_format = 6'b010000; // U-type
-        7'b1101111: o_format = 6'b100000; // J-type
-        default: o_format = 6'b000000; // default case that should never happen
-    endcase
+    always @(*) begin
+        case (i_inst[6:0])
+            7'b0110011: o_format = 6'b000001; // R-type
+            7'b0010011, 7'b0000011, 7'b1100111: o_format = 6'b000010; // I-type
+            7'b0100011: o_format = 6'b000100; // S-type
+            7'b1100011: o_format = 6'b001000; // B-type
+            7'b0110111, 7'b0010111: o_format = 6'b010000; // U-type
+            7'b1101111: o_format = 6'b100000; // J-type
+            default: o_format = 6'b000000; // default case that should never happen
+        endcase
+    end
+
     
 
     //reg write enable logic

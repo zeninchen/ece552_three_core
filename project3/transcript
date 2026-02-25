@@ -1,0 +1,65 @@
+# Compile of alu.v was successful.
+# Compile of branch_decoder.v was successful.
+# Compile of control.v failed with 1 errors.
+# Compile of hart.v failed with 4 errors.
+# Compile of imm.v was successful.
+# Compile of rf.v was successful.
+# Compile of tb.v was successful.
+# 7 compiles, 2 failed with 5 errors.
+# Compile of alu.v was successful.
+# Compile of branch_decoder.v was successful.
+# Compile of control.v failed with 2 errors.
+# Compile of hart.v failed with 4 errors.
+# Compile of imm.v was successful.
+# Compile of rf.v was successful.
+# Compile of tb.v was successful.
+# 7 compiles, 2 failed with 6 errors.
+# Compile of alu.v was successful.
+# Compile of branch_decoder.v was successful.
+# Compile of control.v failed with 23 errors.
+# Compile of hart.v failed with 4 errors.
+# Compile of imm.v was successful.
+# Compile of rf.v was successful.
+# Compile of tb.v was successful.
+# 7 compiles, 2 failed with 27 errors.
+# Compile of control.v failed with 16 errors.
+# Compile of hart.v failed with 4 errors.
+# 2 compiles, 2 failed with 20 errors.
+# Compile of control.v was successful.
+# Compile of hart.v failed with 4 errors.
+# 2 compiles, 1 failed with 4 errors.
+# Compile of hart.v failed with 3 errors.
+# Compile of hart.v failed with 2 errors.
+# Compile of hart.v was successful.
+# Compile of alu.v was successful.
+# Compile of branch_decoder.v was successful.
+# Compile of control.v was successful.
+# Compile of hart.v was successful.
+# Compile of imm.v was successful.
+# Compile of rf.v was successful.
+# Compile of tb.v was successful.
+# 7 compiles, 0 failed with no errors.
+vsim -gui work.hart_tb
+# vsim -gui work.hart_tb 
+# Start time: 10:57:59 on Feb 25,2026
+# Loading work.hart_tb
+# Loading work.hart
+# Loading work.control
+# Loading work.branch_decoder
+# Loading work.alu
+# Loading work.imm
+# Loading work.rf
+# ** Error: (vsim-3063) Port 'u_format_load0' not found in the connected module (11th connection).
+#    Time: 0 ps  Iteration: 0  Instance: /hart_tb/dut/iControl File: C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v Line: 201
+# ** Error: (vsim-3063) Port 'alu_src1' not found in the connected module (12th connection).
+#    Time: 0 ps  Iteration: 0  Instance: /hart_tb/dut/iControl File: C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v Line: 201
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'iALU'.  Expected 9, found 7.
+#    Time: 0 ps  Iteration: 0  Instance: /hart_tb/dut/iALU File: C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v Line: 234
+# ** Error: (vsim-3063) Port 'i_alu_sel' not found in the connected module (3rd connection).
+#    Time: 0 ps  Iteration: 0  Instance: /hart_tb/dut/iALU File: C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v Line: 234
+# ** Warning: (vsim-3722) C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v(234): [TFMPC] - Missing connection for port 'i_opsel'.
+# ** Warning: (vsim-3722) C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v(234): [TFMPC] - Missing connection for port 'o_eq'.
+# ** Warning: (vsim-3722) C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v(234): [TFMPC] - Missing connection for port 'o_slt'.
+# Error loading design
+# End time: 10:58:01 on Feb 25,2026, Elapsed time: 0:00:02
+# Errors: 3, Warnings: 20

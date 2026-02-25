@@ -146,7 +146,6 @@ module hart #(
     // wire and reg declarations for the internal logic of the hart
     wire [31:0] i_inst;
     wire b_sel;
-    wire [31:0] alu_result;
     wire rd_wen;
     wire [2:0] o_opsel;
     wire o_sub;
@@ -172,7 +171,6 @@ module hart #(
     wire l_unsigned;
     //determine whether the load instruction is a signed or unsigned load(we sign extend or zero extend)
     wire is_jump, is_branch, is_jal, is_jalr;
-    wire b_sel;
     wire eq, slt;
     wire [31:0] op1, op2, alu_result;
     //pc declaration
@@ -209,9 +207,9 @@ module hart #(
         .o_arith(o_arith),
         .o_mem_wen(o_mem_wen),
         .o_men_to_reg(o_men_to_reg),
-        .o_alu_src_2(o_alu_src_2),
+        .o_alu_src_2(alu_src2),
         .o_format(o_format),
-        .u_format_load0(u_format_load0),
+        .o_is_lui(u_format_load0),
         .alu_src1(alu_src1),
         .sbhw_sel(sbhw_sel),
         .lbhw_sel(lbhw_sel),
@@ -290,7 +288,7 @@ module hart #(
     assign op2 = alu_src2 ? rs2_rdata : imm;
 
     //store selector logic
-    o_dmem_wdata =  (sbhw_sel[1]) ? rs2_rdata :
+    assign o_dmem_wdata =  (sbhw_sel[1]) ? rs2_rdata :
                     (sbhw_sel[0]) ? rs2_rdata[15:0] :
                     rs2_rdata[7:0];
 
@@ -339,8 +337,7 @@ module hart #(
 
     //writeback logic
     
-    //it will do nothing when write to 0
-    assign rd_wen = o_wen; 
+
     //TODO
 
     assign rd_wdata = o_men_to_reg ? men_data :
