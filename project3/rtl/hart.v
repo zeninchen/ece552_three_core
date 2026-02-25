@@ -331,7 +331,8 @@ module hart #(
     //         default: men_data = 32'h0000_0000; // default case that should never happen
     //     endcase
     // end
-    
+    //we don't test the memory for now
+    assign mem_data = 32'd0;
 
 
 
