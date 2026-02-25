@@ -273,7 +273,10 @@ module hart #(
     //assign the retired pc to the current pc
     assign o_retire_pc = pc;
     assign o_retire_next_pc = next_pc;
-
+    //ebreak op code is 1 1 1 0 0 1 1 and other bits are 0
+    assign o_retire_halt = (i_inst[6:0] == 7'b1110011) && (i_inst[31:7] == 25'd0);
+    //we set the trap for the illegal instruction only now
+    assign o_retire_trap = o_format == 6'b000000; // if the instruction format is invalid(all 0), we set the trap signal
     //instruction fetch
     assign o_imem_raddr = pc; // the address to fetch the instruction from, which is the current pc
     assign i_inst = i_imem_rdata; // instruction fetched from imem
