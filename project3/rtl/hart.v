@@ -275,8 +275,8 @@ module hart #(
     assign o_retire_next_pc = next_pc;
     //ebreak op code is 1 1 1 0 0 1 1 and other bits are 0
     assign o_retire_halt = (i_inst[31:0]==32'h00100073) ? 1'b1 : 1'b0;
-    //we set the trap for the illegal instruction only now
-    assign o_retire_trap = o_format == 6'b000000; // if the instruction format is invalid(all 0), we set the trap signal
+    //we set the trap for the illegal instruction only now, also when it's not halt
+    assign o_retire_trap = o_format == 6'b000000 && !o_retire_halt; // if the instruction format is invalid(all 0), we set the trap signal
     //instruction fetch
     assign o_imem_raddr = pc; // the address to fetch the instruction from, which is the current pc
     assign i_inst = i_imem_rdata; // instruction fetched from imem
@@ -284,7 +284,7 @@ module hart #(
     
     //alu operand selection
     //TODO
-    assign op1 = alu_src1 ? (u_format_load0 ? pc : 0) : rs1_rdata;
+    assign op1 = alu_src1 ? (u_format_load0 ? 32'd0 :pc) : rs1_rdata;
     assign op2 = alu_src2 ? rs2_rdata : imm;
 
     //store selector logic

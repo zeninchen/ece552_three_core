@@ -79,23 +79,23 @@ R7
 R5
 R6
 vhart
-!s110 1772065075
+!s110 1772074255
 !i10b 1
-!s100 0fQ4NLaKdTNhJjC>2kIR`3
+!s100 kH3bdDj7W03HXF2oABD0g3
 R1
-IFdYO3R4FVIQ82d6`zMPVB0
+IB7UPTSfBb:R1ERXl`AGz>1
 R2
 R3
-w1772065068
+w1772074205
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v
-!i122 67
-L0 2 351
+!i122 68
+L0 2 345
 R4
 r1
 !s85 0
 31
-!s108 1772065075.000000
+!s108 1772074254.000000
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v|
 !i113 1
