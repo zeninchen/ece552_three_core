@@ -10,7 +10,7 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 valu
-Z0 !s110 1772049557
+Z0 !s110 1772064728
 !i10b 1
 !s100 =0fLQZ0ONJNNfPmAN=gdm1
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,18 +20,18 @@ Z3 dC:/Users/User/Documents/ECE552/ece552_three_core/project3
 w1772048674
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/alu.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/alu.v
-!i122 39
+!i122 59
 L0 8 130
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1772049557.000000
+!s108 1772064727.000000
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/alu.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/alu.v|
 !i113 1
-Z6 o-work work
-Z7 tCvgOpt 0
+Z5 o-work work
+Z6 tCvgOpt 0
 vbranch_decoder
 R0
 !i10b 1
@@ -43,18 +43,18 @@ R3
 w1772037914
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/branch_decoder.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/branch_decoder.v
-!i122 40
+!i122 60
 L0 1 16
 R4
 r1
 !s85 0
 31
-R5
+Z7 !s108 1772064728.000000
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/branch_decoder.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/branch_decoder.v|
 !i113 1
+R5
 R6
-R7
 vcontrol
 R0
 !i10b 1
@@ -66,43 +66,43 @@ R3
 w1772047774
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/control.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/control.v
-!i122 41
+!i122 61
 L0 1 146
 R4
 r1
 !s85 0
 31
-R5
+R7
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/control.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/control.v|
 !i113 1
+R5
 R6
-R7
 vhart
-!s110 1772050733
+!s110 1772065075
 !i10b 1
-!s100 >48Z=ldH]IQ2nj:H28SSa1
+!s100 0fQ4NLaKdTNhJjC>2kIR`3
 R1
-Ii;hj8AhM=cgDJR86W26Tn0
+IFdYO3R4FVIQ82d6`zMPVB0
 R2
 R3
-w1772050727
+w1772065068
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v
-!i122 47
-L0 2 342
+!i122 67
+L0 2 351
 R4
 r1
 !s85 0
 31
-!s108 1772050733.000000
+!s108 1772065075.000000
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v|
 !i113 1
+R5
 R6
-R7
 vhart_tb
-!s110 1772049559
+Z8 !s110 1772064729
 !i10b 1
 !s100 TDJZM0Ob=YG4@n3>k7omR1
 R1
@@ -112,20 +112,20 @@ R3
 w1770824891
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/tb/tb.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/tb/tb.v
-!i122 45
+!i122 65
 L0 1 132
 R4
 r1
 !s85 0
 31
-Z8 !s108 1772049558.000000
+Z9 !s108 1772064729.000000
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/tb/tb.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/tb/tb.v|
 !i113 1
+R5
 R6
-R7
 vimm
-Z9 !s110 1772049558
+R8
 !i10b 1
 !s100 h?;niN]FEoBeNE0??91H90
 R1
@@ -135,20 +135,20 @@ R3
 w1772032081
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/imm.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/imm.v
-!i122 43
+!i122 63
 L0 6 53
 R4
 r1
 !s85 0
 31
-R8
+R9
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/imm.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/imm.v|
 !i113 1
+R5
 R6
-R7
 vrf
-R9
+R8
 !i10b 1
 !s100 mc`mnT=GPU`V4LiOPY3`G2
 R1
@@ -158,15 +158,15 @@ R3
 w1772047939
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/rf.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/rf.v
-!i122 44
+!i122 64
 L0 8 109
 R4
 r1
 !s85 0
 31
-R8
+R9
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/rf.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/rf.v|
 !i113 1
+R5
 R6
-R7
