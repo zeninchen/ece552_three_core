@@ -309,20 +309,24 @@ module hart #(
     wire [31:0] o_dmem_mask_extend = {8{o_dmem_mask[3]}, 8{o_dmem_mask[2]},
                                       8{o_dmem_mask[1]}, 8{o_dmem_mask[0]}};
 
+
+
+    /// load selector logic ///
     // Bit indicating the value of the sign bit (if load is unsigned, this will be 0)
     reg sign_bit;
     assign sign_bit = (!l_unsigned) & ((lbhw_sel == 2'b00) ? i_dmem_rdata[7] : // byte access
                       (lbhw_sel == 2'b01) ? i_dmem_rdata[15] : // half-word access
                       (lbhw_sel == 2'b10) ? i_dmem_rdata[31] : 1'b0;) // word access
 
-    // Perform load data 
     reg [31:0] load_data;
     assign load_data = is_load ? ((lbhw_sel == 2'b00) ? {{24{sign_bit}}, i_dmem_rdata[7:0]} : // byte access
                        (lbhw_sel == 2'b01) ? {{16{sign_bit}}, i_dmem_rdata[15:0]} : // half-word access
                        (lbhw_sel == 2'b10) ? i_dmem_rdata : // word access
                        32'h0000_0000) : 32'h0000_0000; // default case that should never happen
 
-    // Store data logic
+
+
+    /// Store data logic ///
     always @(posedge i_clk) begin
         if (o_dmem_wen) begin
             case (sbhw_sel)
@@ -336,45 +340,7 @@ module hart #(
         end
     end
 
-
-    //TODO
-    //the address of the memory access is the result of the ALU calculation
-    // assign o_dmem_addr = alu_result;
-    // //connect the wires
-    // //only read when it's a load
-    // assign o_dmem_ren = is_load;
-    
-    // assign o_dmem_wen = o_mem_wen;
-
-    // //the 3 is the most significant bit
-    // wire [7:0] mask_0, mask_1, mask_2, mask_3;
-    // //assign the mask if the the o_dmen_mask is 1 at the location
-    // assign mask_0 = o_dmem_mask[0] ? 8'hff : 8'b0;
-    // assign mask_1 = o_dmem_mask[1] ? 8'hff : 8'b0;
-    // assign mask_2 = o_dmem_mask[2] ? 8'hff : 8'b0;
-    // assign mask_3 = o_dmem_mask[3] ? 8'hff : 8'b0;
-    // //mask the output
-    // assign masked_men_data = (mask_0 & i_dmem_rdata[7:0]) |
-    //                         (mask_1 & i_dmem_rdata[15:8]) |
-    //                         (mask_2 & i_dmem_rdata[23:16]) |
-    //                         (mask_3 & i_dmem_rdata[31:24]);
-    // always @(*) begin
-    //     if(o_dmem_mask)
-    //     case(lbhw_sel)
-    //         //depends on if it's signed of unsigned, we sign extend or zero extend the data read from memory for loads, and we shift the data to the correct byte lanes for stores
-    //         // load byte
-    //         2'b00: men_data = l_unsigned ? {24'b0, masked_men_data[7:0]} : {{24{masked_men_data[7]}}, masked_men_data[7:0]};
-    //         // load halfword
-    //         2'b01: men_data = l_unsigned ? {16'b0, masked_men_data[15:0]} : {{16{masked_men_data[15]}}, masked_men_data[15:0]};
-    //         //load word
-    //         2'b10: men_data =  masked_men_data;
-    //         default: men_data = 32'h0000_0000; // default case that should never happen
-    //     endcase
-    // end
-    //we don't test the memory for now
     assign mem_data = 32'd0;
-
-
 
     //writeback logic
     assign rd_wdata = o_men_to_reg ? men_data :

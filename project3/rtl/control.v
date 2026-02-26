@@ -6,7 +6,6 @@ module control(
     output reg o_unsigned,
     output reg o_arith,
     output wire o_mem_wen,
-    output wire o_men_to_reg,
     output wire o_alu_src_2,
     output wire o_alu_src_1,
     output reg [5:0] o_format, // one-hot format code
@@ -24,11 +23,11 @@ module control(
     //determine whether the load instruction is a byte, halfword, or word load
     output wire l_unsigned,
     //determine whether the load instruction is a signed or unsigned load(we sign extend or zero extend)
-    output wire is_jump,
+    output wire o_is_jump,
     output wire is_branch,
     output wire is_jal,
     output wire is_jalr,
-    output wire is_load
+    output wire o_is_load // this serves as both MemRead and MemtoReg
 );
     //format logic 
     //R-format opcode 011 0011
@@ -59,10 +58,6 @@ module control(
     //only S instructions write to memory
     assign o_mem_wen = o_format[2];
 
-    //mem to reg logic
-    //only load instructions (opcode 000 0011) write the memory data to a register
-    assign o_men_to_reg = (i_inst[6:0] == 7'b0000011);
-
     // selects to store a byte, half a word, or a word
     assign sbhw_sel = i_inst[13:12];
 
@@ -82,7 +77,7 @@ module control(
     //is_jalr logic: jalr sets pc to be an ALU result
     assign is_jalr = i_inst[6:0] == 7'b1100111;
 
-    assign is_jump = is_jal || is_jalr;
+    assign o_is_jump = is_jal || is_jalr;
 
     // ALU controls: can check the RV32I Reference Card to verify the logic
     // 
@@ -142,5 +137,5 @@ module control(
     assign o_alu_src_2 = (o_format[0] || o_format[3]);
 
     assign is_branch = o_format[3];
-    assign is_load = i_inst[6:0] == 7'b0000011;
+    assign o_is_load = (i_inst[6:0] == 7'b0000011); // serves as both MemRead and MemtoReg
 endmodule

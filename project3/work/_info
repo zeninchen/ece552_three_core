@@ -10,74 +10,72 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 valu
-Z0 !s110 1772064728
+Z0 !s110 1772100231
 !i10b 1
 !s100 =0fLQZ0ONJNNfPmAN=gdm1
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I;O^c789B;mA;<8^bKEVD23
+IIS=G]F^]PBAJ6>gBRSb5a1
 Z2 VDg1SIo80bB@j0V0VzS_@n1
-Z3 dC:/Users/User/Documents/ECE552/ece552_three_core/project3
-w1772048674
-8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/alu.v
-FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/alu.v
-!i122 59
+Z3 dC:/Users/Kewei Yang/OneDrive - UW-Madison/Documents/Madison/ECE/ECE 552/Projects/wisc26-public/ece552_three_core/project3
+Z4 w1772080316
+8rtl/alu.v
+Frtl/alu.v
+!i122 69
 L0 8 130
-Z4 OV;L;2020.1;71
+Z5 OV;L;2020.1;71
 r1
 !s85 0
 31
-!s108 1772064727.000000
-!s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/alu.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/alu.v|
+Z6 !s108 1772100230.000000
+!s107 tb/tb.v|rtl/rf.v|rtl/imm.v|rtl/hart_gyw.v|rtl/hart.v|rtl/control.v|rtl/branch_decoder.v|rtl/alu.v|
+Z7 !s90 rtl/alu.v|rtl/branch_decoder.v|rtl/control.v|rtl/hart.v|rtl/hart_gyw.v|rtl/imm.v|rtl/rf.v|tb/tb.v|
 !i113 1
-Z5 o-work work
-Z6 tCvgOpt 0
+Z8 tCvgOpt 0
 vbranch_decoder
 R0
 !i10b 1
 !s100 3:aRFbMWO3FoTRMhNRQ<C0
 R1
-I<8ODXkTBBEI;AdI_2>9[00
+IM]T]hXBz[QjzL90n5`eGh2
 R2
 R3
-w1772037914
-8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/branch_decoder.v
-FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/branch_decoder.v
-!i122 60
-L0 1 16
 R4
+8rtl/branch_decoder.v
+Frtl/branch_decoder.v
+!i122 69
+L0 1 16
+R5
 r1
 !s85 0
 31
-Z7 !s108 1772064728.000000
-!s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/branch_decoder.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/branch_decoder.v|
-!i113 1
-R5
 R6
+Z9 !s107 tb/tb.v|rtl/rf.v|rtl/imm.v|rtl/hart_gyw.v|rtl/hart.v|rtl/control.v|rtl/branch_decoder.v|rtl/alu.v|
+R7
+!i113 1
+R8
 vcontrol
-R0
+!s110 1772064728
 !i10b 1
 !s100 2g<:EKa9jG4<MbRa<UgjJ3
 R1
 I<eY_^eQIOgTU3QP>EE[G12
 R2
-R3
+Z10 dC:/Users/User/Documents/ECE552/ece552_three_core/project3
 w1772047774
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/control.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/control.v
 !i122 61
 L0 1 146
-R4
+R5
 r1
 !s85 0
 31
-R7
+!s108 1772064728.000000
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/control.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/control.v|
 !i113 1
-R5
-R6
+Z11 o-work work
+R8
 vhart
 !s110 1772074255
 !i10b 1
@@ -85,13 +83,13 @@ vhart
 R1
 IB7UPTSfBb:R1ERXl`AGz>1
 R2
-R3
+R10
 w1772074205
 8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v
 FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v
 !i122 68
 L0 2 345
-R4
+R5
 r1
 !s85 0
 31
@@ -99,74 +97,71 @@ r1
 !s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/hart.v|
 !i113 1
-R5
-R6
+R11
+R8
 vhart_tb
-Z8 !s110 1772064729
+R0
 !i10b 1
 !s100 TDJZM0Ob=YG4@n3>k7omR1
 R1
-I4k7a5fJfUDn^X7TTo:CO22
+I2P88Tif^oC3UZaKW`bGR=1
 R2
 R3
-w1770824891
-8C:/Users/User/Documents/ECE552/ece552_three_core/project3/tb/tb.v
-FC:/Users/User/Documents/ECE552/ece552_three_core/project3/tb/tb.v
-!i122 65
+w1771436122
+8tb/tb.v
+Ftb/tb.v
+!i122 69
 L0 1 132
-R4
+R5
 r1
 !s85 0
 31
-Z9 !s108 1772064729.000000
-!s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/tb/tb.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/tb/tb.v|
-!i113 1
-R5
 R6
-vimm
+R9
+R7
+!i113 1
 R8
+vimm
+R0
 !i10b 1
 !s100 h?;niN]FEoBeNE0??91H90
 R1
-IA5]k`ng=gWQO^8S]Mz<5?2
+I7lF0fMd@4L600`nez@6B:2
 R2
 R3
-w1772032081
-8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/imm.v
-FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/imm.v
-!i122 63
+w1771976237
+8rtl/imm.v
+Frtl/imm.v
+!i122 69
 L0 6 53
-R4
+R5
 r1
 !s85 0
 31
-R9
-!s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/imm.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/imm.v|
-!i113 1
-R5
 R6
-vrf
+R9
+R7
+!i113 1
 R8
+vrf
+R0
 !i10b 1
 !s100 mc`mnT=GPU`V4LiOPY3`G2
 R1
-I7<G0]SfHPBk`8LoY;ZP=M0
+I18`CzC8a]WIoXP1>`=c2m1
 R2
 R3
-w1772047939
-8C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/rf.v
-FC:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/rf.v
-!i122 64
-L0 8 109
 R4
+8rtl/rf.v
+Frtl/rf.v
+!i122 69
+L0 8 109
+R5
 r1
 !s85 0
 31
-R9
-!s107 C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/rf.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_three_core/project3/rtl/rf.v|
-!i113 1
-R5
 R6
+R9
+R7
+!i113 1
+R8
