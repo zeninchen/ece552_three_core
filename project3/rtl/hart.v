@@ -297,43 +297,7 @@ module hart #(
     
     //memory access logic
     //TODO
-    //the address of the memory access is the result of the ALU calculation
-    assign o_dmem_addr = {alu_result[31:2], 2'b00};
-    // //connect the wires
-    // //only read when it's a load
-    assign o_dmem_ren = is_load;
-    
-    assign o_dmem_wen = o_mem_wen;
-    / Extend mask to align with the correct byte lanes for unaligned accesses
-    wire [31:0] o_dmem_mask_extend = {8{o_dmem_mask[3]}, 8{o_dmem_mask[2]},
-                                      8{o_dmem_mask[1]}, 8{o_dmem_mask[0]}};
 
-    // Bit indicating the value of the sign bit (if load is unsigned, this will be 0)
-    reg sign_bit;
-    assign sign_bit = (!l_unsigned) & ((lbhw_sel == 2'b00) ? i_dmem_rdata[7] : // byte access
-                      (lbhw_sel == 2'b01) ? i_dmem_rdata[15] : // half-word access
-                      (lbhw_sel == 2'b10) ? i_dmem_rdata[31] : 1'b0;) // word access
-
-    // Perform load data 
-    reg [31:0] load_data;
-    assign load_data = is_load ? ((lbhw_sel == 2'b00) ? {{24{sign_bit}}, i_dmem_rdata[7:0]} : // byte access
-                       (lbhw_sel == 2'b01) ? {{16{sign_bit}}, i_dmem_rdata[15:0]} : // half-word access
-                       (lbhw_sel == 2'b10) ? i_dmem_rdata : // word access
-                       32'h0000_0000) : 32'h0000_0000; // default case that should never happen
-
-    // Store data logic
-    always @(posedge i_clk) begin
-        if (o_dmem_wen) begin
-            case (sbhw_sel)
-                2'b00: o_dmem_wdata <= {{24{rs2_rdata[7]}}, rs2_rdata[7:0]}; // byte access
-                2'b01: o_dmem_wdata <= {16{rs2_rdata[15]}, rs2_rdata[15:0]}; // half-word access
-                2'b10: o_dmem_wdata <= rs2_rdata; // word access
-                default: o_dmem_wdata <= 32'h0000_0000; // default case that should never happen
-            endcase
-        end else begin
-            o_dmem_wdata <= 32'h0000_0000; // when not writing, set wdata to 0
-        end
-    end
     // //the 3 is the most significant bit
     // wire [7:0] mask_0, mask_1, mask_2, mask_3;
     // //assign the mask if the the o_dmen_mask is 1 at the location
@@ -359,17 +323,17 @@ module hart #(
     //         default: men_data = 32'h0000_0000; // default case that should never happen
     //     endcase
     // end
-    // //we don't test the memory for now
-    // assign mem_data = 32'd0;
-    // //set both the read enable and write enable to 0 for now
-    // assign o_dmem_ren = 1'b0;
-    // assign o_dmem_wen = 1'b0;
-    // //assign the mask to 0 for now
-    // assign o_dmem_mask = 4'b0;
-    // //assign the address to 0 for now
-    // assign o_dmem_addr = 32'b0;
-    // //assign the write data to 0 for now
-    // assign o_dmem_wdata = 32'b0;
+    //we don't test the memory for now
+    assign mem_data = 32'd0;
+    //set both the read enable and write enable to 0 for now
+    assign o_dmem_ren = 1'b0;
+    assign o_dmem_wen = 1'b0;
+    //assign the mask to 0 for now
+    assign o_dmem_mask = 4'b0;
+    //assign the address to 0 for now
+    assign o_dmem_addr = 32'b0;
+    //assign the write data to 0 for now
+    assign o_dmem_wdata = 32'b0;
 
 
 
