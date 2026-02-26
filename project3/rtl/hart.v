@@ -253,7 +253,8 @@ module hart #(
     assign o_retire_rs1_rdata = rs1_rdata;
     assign o_retire_rs2_raddr = i_inst[24:20];
     assign o_retire_rs2_rdata = rs2_rdata;
-    assign o_retire_rd_waddr = i_inst[11:7];
+    //if the write enable is high and the write address matches the read address, we can bypass the write data to the read data for the retire interface
+    assign o_retire_rd_waddr = rd_wen ? i_inst[11:7] : 5'd0;
     assign o_retire_rd_wdata = rd_wdata;
 
     //pc logic 
