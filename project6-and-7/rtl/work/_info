@@ -1,0 +1,371 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/User/Documents/ECE759/repo759/final_project
+valu
+Z0 !s110 1775516190
+!i10b 1
+!s100 I6m9o_^GbVe;e^4W`Vc;<0
+IXd0h<V3N2h4Uog]RGYPkP1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl
+Z3 w1775516110
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alu.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alu.v
+L0 8
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1775516190.000000
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alu.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alu.v|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+valucontrol
+R0
+!i10b 1
+!s100 5UcKm^VW8hoTfiUBoi]mm0
+IcUM0dadb??gUcM_[?13fL2
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alucontrol.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alucontrol.v
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alucontrol.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alucontrol.v|
+!i113 1
+R6
+R7
+vbranchjal_control
+R0
+!i10b 1
+!s100 H^PUJ>H4AH2Hd<6jdj;1a2
+I4Gk18E]M9Ah`mHB]<7Gd71
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/branchjal_control.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/branchjal_control.v
+L0 5
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/branchjal_control.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/branchjal_control.v|
+!i113 1
+R6
+R7
+vcache
+!s110 1775507158
+!i10b 1
+!s100 9N5Z?EYaK7AI]D]WLdQ_l1
+!s11b Dg1SIo80bB@j0V0VzS_@n1
+I_gBJ:FjDboeE^B=a4KiKh1
+R1
+dC:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl
+w1775505383
+8C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/cache.v
+FC:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/cache.v
+!i122 63
+L0 3 126
+OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1775507158.000000
+!s107 C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/cache.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/cache.v|
+!i113 1
+R6
+R7
+vControl
+R0
+!i10b 1
+!s100 5fc5jW@`e=S]iRcG1hi>f1
+INEZUVZhFO<_dDRjO7>>g20
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/Control.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/Control.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/Control.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/Control.v|
+!i113 1
+R6
+R7
+n@control
+vdecode
+R0
+!i10b 1
+!s100 _2bG?[bVV@KC<OjkKmEA]0
+IU]@<hj3h5aC2JYR6Mbo5V0
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/decode.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/decode.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/decode.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/decode.v|
+!i113 1
+R6
+R7
+vexecute
+R0
+!i10b 1
+!s100 YjD>VQhi:;m5dcOGNG;:N3
+IJY>fDLbEIaZE?C=DAQC;E2
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/execute.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/execute.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/execute.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/execute.v|
+!i113 1
+R6
+R7
+vfetch
+R0
+!i10b 1
+!s100 TMY`P9K2Nz]1:Xo:1lUJa3
+IYdk5>=kWR0zmDoVR?YTNU3
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/fetch.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/fetch.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/fetch.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/fetch.v|
+!i113 1
+R6
+R7
+vforward
+Z8 !s110 1775516191
+!i10b 1
+!s100 8ao=ZJ0jz[MFl:GI0:zF42
+IShmb5GQLLNc4aRh87TA?a0
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/forward.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/forward.v
+L0 1
+R4
+r1
+!s85 0
+31
+Z9 !s108 1775516191.000000
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/forward.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/forward.v|
+!i113 1
+R6
+R7
+vhart
+R8
+!i10b 1
+!s100 VZ9>jHHTh`H?oV7;C1X>82
+I=J6e?2I[Q7H2UYW?N0WnY0
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hart.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hart.v
+L0 3
+R4
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hart.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hart.v|
+!i113 1
+R6
+R7
+vhart_tb
+R8
+!i10b 1
+!s100 zXA;mo8Z6F<1SI`QzTTCg3
+I3Bgi692dz<4Ja_mkfK50k1
+R1
+R2
+w1775334348
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/tb/stall_mem_tb.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/tb/stall_mem_tb.v
+L0 2
+R4
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/tb/stall_mem_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/tb/stall_mem_tb.v|
+!i113 1
+R6
+R7
+vhazard_detect
+R8
+!i10b 1
+!s100 1bRYe[k<dRm[0RQNica_01
+IF2b^cCXONco>d7e>k8DM_3
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hazard_detect.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hazard_detect.v
+L0 1
+R4
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hazard_detect.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hazard_detect.v|
+!i113 1
+R6
+R7
+vimm
+R8
+!i10b 1
+!s100 4AnSKc0EV^clBA]803MmA2
+IVUWe5m63c<Nl:R5BI0LWM2
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/immgen.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/immgen.v
+L0 6
+R4
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/immgen.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/immgen.v|
+!i113 1
+R6
+R7
+vmemory
+R8
+!i10b 1
+!s100 =I1Bihz]F>Vb`P=lfe1gn0
+IflJm_mfM?BjbHHl@6oPD]2
+R1
+R2
+w1775334347
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/tb_memory.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/tb_memory.v
+L0 8
+R4
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/tb_memory.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/tb_memory.v|
+!i113 1
+R6
+R7
+vmemory_stage
+R8
+!i10b 1
+!s100 T:C61WLFAzi0dCao_VP8g1
+IW4diNj?lAK0NNGGcML?8@2
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/memory.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/memory.v
+L0 3
+R4
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/memory.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/memory.v|
+!i113 1
+R6
+R7
+vrf
+R8
+!i10b 1
+!s100 PdmZfg8VIV@fzZaz>;V>H2
+IY=Y`6VeBb5dDM_4?YgXil0
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/rf.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/rf.v
+L0 8
+R4
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/rf.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/rf.v|
+!i113 1
+R6
+R7
+vwriteback
+R8
+!i10b 1
+!s100 B4m3H5cSA@eiNR1DJ?]?W0
+I_DDa_InW8Zf?HQJ_c]AMZ1
+R1
+R2
+R3
+8C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/writeback.v
+FC:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/writeback.v
+L0 3
+R4
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/writeback.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/writeback.v|
+!i113 1
+R6
+R7

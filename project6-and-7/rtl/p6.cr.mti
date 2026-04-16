@@ -1,0 +1,224 @@
+C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/writeback.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/writeback.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module writeback
+
+Top level modules:
+	writeback
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/immgen.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/immgen.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module imm
+
+Top level modules:
+	imm
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/forward.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/forward.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module forward
+
+Top level modules:
+	forward
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/branchjal_control.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/branchjal_control.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module branchjal_control
+
+Top level modules:
+	branchjal_control
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/fetch.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/fetch.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module fetch
+
+Top level modules:
+	fetch
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/hazard_detect.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/hazard_detect.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module hazard_detect
+
+Top level modules:
+	hazard_detect
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/alucontrol.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/alucontrol.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module alucontrol
+
+Top level modules:
+	alucontrol
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/execute.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/execute.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module execute
+
+Top level modules:
+	execute
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/cache.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/cache.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/rf.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/rf.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module rf
+
+Top level modules:
+	rf
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/immgen.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/immgen.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module imm
+
+Top level modules:
+	imm
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/memory.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/memory.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module memory_stage
+
+Top level modules:
+	memory_stage
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/tb_memory.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/tb_memory.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module memory
+
+Top level modules:
+	memory
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hazard_detect.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hazard_detect.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hazard_detect
+
+Top level modules:
+	hazard_detect
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/fetch.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/fetch.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module fetch
+
+Top level modules:
+	fetch
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/tb/stall_mem_tb.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/tb/stall_mem_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module hart_tb
+
+Top level modules:
+	hart_tb
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/execute.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/execute.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module execute
+
+Top level modules:
+	execute
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/rf.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/rf.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module rf
+
+Top level modules:
+	rf
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/decode.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/decode.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module decode
+
+Top level modules:
+	decode
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/cache.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/cache.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/memory.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/memory.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module memory_stage
+
+Top level modules:
+	memory_stage
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/Control.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/Control.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Control
+
+Top level modules:
+	Control
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/alu.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/alu.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module alu
+
+Top level modules:
+	alu
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/tb_memory.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/tb_memory.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module memory
+
+Top level modules:
+	memory
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/tb/stall_mem_tb.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/tb/stall_mem_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hart_tb
+
+Top level modules:
+	hart_tb
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hart.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/hart.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hart
+
+Top level modules:
+	hart
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/decode.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/decode.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module decode
+
+Top level modules:
+	decode
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/writeback.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/writeback.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module writeback
+
+Top level modules:
+	writeback
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/forward.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/forward.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module forward
+
+Top level modules:
+	forward
+
+} {} {}} C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/branchjal_control.v {1 {vlog -work work -stats=none C:/Users/User/Documents/ECE552/ece552_project/project6-and-7/rtl/branchjal_control.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module branchjal_control
+
+Top level modules:
+	branchjal_control
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/Control.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/Control.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Control
+
+Top level modules:
+	Control
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alu.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alu.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module alu
+
+Top level modules:
+	alu
+
+} {} {}} C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alucontrol.v {1 {vlog -work work -stats=none C:/Users/zenin/Documents/ece552/ece552_project/project6-and-7/rtl/alucontrol.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module alucontrol
+
+Top level modules:
+	alucontrol
+
+} {} {}}
